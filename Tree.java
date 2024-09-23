@@ -22,7 +22,7 @@ public class Tree {
             return newNode;
         }
         if (current.getValue() > newNode.getValue()){
-            current.setLeft(insertNew(newNode, current.getRight()));
+            current.setLeft(insertNew(newNode, current.getLeft()));
         } else {
             current.setRight(insertNew(newNode, current.getRight()));
         }
@@ -33,13 +33,29 @@ public class Tree {
         root = insertNew(newNode, root);
     }
 
-    public void printPreOrder(Node newNode){
-        if (newNode != null) {
-            System.out.println(newNode.getValue() + "\n");
-            printPreOrder(newNode.getLeft());
-            printPreOrder(newNode.getRight());
+    public void printPreOrder(Node element){
+        if (element != null) {
+            System.out.println(element.getValue() + "\n");
+            printPreOrder(element.getLeft());
+            printPreOrder(element.getRight());
         }
     }
+
+    // public void printInOrder(Node newNode){
+    //     if (newNode != null) {
+    //         System.out.println(newNode.getValue() + "\n");
+    //         printPreOrder(newNode.getLeft());
+    //         printPreOrder(newNode.getRight());
+    //     }
+    // }
+
+    // public void printPosOrder(Node newNode){
+    //     if (newNode != null) {
+    //         System.out.println(newNode.getValue() + "\n");
+    //         printPreOrder(newNode.getLeft());
+    //         printPreOrder(newNode.getRight());
+    //     }
+    // }
 
     private Node findNode(Node current, int v){
         if (current == null) {
