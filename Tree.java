@@ -30,7 +30,18 @@ public class Tree {
     }
 
     public void Insert(Node newNode){
-        root = insertNew(newNode, root);
+        if (existsNode(newNode) == false){
+            root = insertNew(newNode, root);
+        }
+    }
+
+    private boolean existsNode(Node element){
+        Node temp = findNode(root, element.getValue());
+        if (temp != null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void printPreOrder(Node element){
@@ -57,7 +68,7 @@ public class Tree {
         }
     }
 
-    public int allNodes(Node element){
+    private int allNodes(Node element){
         if (element == null) {
             return 0;
         } else {
@@ -65,7 +76,7 @@ public class Tree {
         }
     }
 
-    public int rootNodes(Node element){
+    private int rootNodes(Node element){
         if (element == null){
             return 0;
         } 
@@ -80,7 +91,7 @@ public class Tree {
         }
     }
 
-    public int leafNodes(Node element){
+    private int leafNodes(Node element){
         if (element == null){
             return 0;
         } 
@@ -98,7 +109,7 @@ public class Tree {
         }
     }
 
-    public int height(Node element){
+    private int height(Node element){
         if (element == null){
             return 0;
         } 
@@ -120,6 +131,14 @@ public class Tree {
         System.out.println("Altura da árvore: " + height(root));
     }
     
+    public void removeNode(Node element){
+        
+    }
+
+    public void removePairs(Node root){
+        
+    }
+
     private Node findNode(Node current, int v){
         if (current == null) {
             return null;
