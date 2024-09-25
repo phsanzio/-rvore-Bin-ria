@@ -41,6 +41,68 @@ public class Tree {
         }
     }
 
+    public int allNodes(Node element){
+        if (element == null) {
+            return 0;
+        } else {
+            return 1 + allNodes(element.getLeft()) + allNodes(element.getRight());
+        }
+    }
+
+    public int rootNodes(Node element){
+        if (element == null){
+            return 0;
+        } 
+        else if (element.getRight() != null){
+            return 1 + rootNodes(element.getRight());
+        }   
+        else if (element.getLeft() != null){
+                return 1 + rootNodes(element.getLeft());
+        }
+        else {
+            return 1;
+        }
+    }
+
+    public int leafNodes(Node element){
+        if (element == null){
+            return 0;
+        } 
+        else if (element.getRight() != null && element.getLeft() != null){
+            return leafNodes(element.getRight()) + leafNodes(element.getLeft());
+        }   
+        else if (element.getLeft() != null){
+            return leafNodes(element.getLeft());
+        } 
+        else if (element.getRight() != null){
+            return leafNodes(element.getRight());
+        }
+        else {
+            return 1;
+        }
+    }
+
+    public int height(Node element){
+        if (element == null){
+            return 0;
+        } 
+        else {
+            int heightLeft = height(element.getLeft());
+            int heightRight = height(element.getRight());
+            if (heightLeft > heightRight){
+                return heightLeft + 1;
+            } else {
+                return heightRight + 1;
+            }
+        } 
+    }
+
+    public void countNodes(Node root){
+        System.out.println("Número de nós na árvore: " + allNodes(root));
+        System.out.println("Número de nós não-folhas na árvore: " + rootNodes(root));
+        System.out.println("Número de nós folhas na árvore: " + leafNodes(root));
+        System.out.println("Altura da árvore: " + height(root));
+    }
     // public void printInOrder(Node newNode){
     //     if (newNode != null) {
     //         System.out.println(newNode.getValue() + "\n");
