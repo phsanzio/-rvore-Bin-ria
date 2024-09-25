@@ -41,6 +41,22 @@ public class Tree {
         }
     }
 
+    public void printInOrder(Node newNode){
+        if (newNode != null) {
+            printInOrder(newNode.getLeft());
+            System.out.println(newNode.getValue() + " ");
+            printInOrder(newNode.getRight());
+        }
+    }
+
+    public void printPosOrder(Node newNode){
+        if (newNode != null) {
+            printPosOrder(newNode.getLeft());
+            printPosOrder(newNode.getRight());
+            System.out.println(newNode.getValue() + " ");
+        }
+    }
+
     public int allNodes(Node element){
         if (element == null) {
             return 0;
@@ -104,22 +120,6 @@ public class Tree {
         System.out.println("Altura da árvore: " + height(root));
     }
     
-    public void printInOrder(Node newNode){
-        if (newNode != null) {
-            printInOrder(newNode.getLeft());
-            System.out.println(newNode.getValue() + " ");
-            printInOrder(newNode.getRight());
-        }
-    }
-
-    public void printPosOrder(Node newNode){
-        if (newNode != null) {
-            printPosOrder(newNode.getLeft());
-            printPosOrder(newNode.getRight());
-            System.out.println(newNode.getValue() + " ");
-        }
-    }
-
     private Node findNode(Node current, int v){
         if (current == null) {
             return null;
