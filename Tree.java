@@ -35,7 +35,7 @@ public class Tree {
 
     public void printPreOrder(Node element){
         if (element != null) {
-            System.out.println(element.getValue() + "\n");
+            System.out.println(element.getValue() + " ");
             printPreOrder(element.getLeft());
             printPreOrder(element.getRight());
         }
@@ -103,21 +103,22 @@ public class Tree {
         System.out.println("Número de nós folhas na árvore: " + leafNodes(root));
         System.out.println("Altura da árvore: " + height(root));
     }
-    // public void printInOrder(Node newNode){
-    //     if (newNode != null) {
-    //         System.out.println(newNode.getValue() + "\n");
-    //         printPreOrder(newNode.getLeft());
-    //         printPreOrder(newNode.getRight());
-    //     }
-    // }
+    
+    public void printInOrder(Node newNode){
+        if (newNode != null) {
+            printInOrder(newNode.getLeft());
+            System.out.println(newNode.getValue() + " ");
+            printInOrder(newNode.getRight());
+        }
+    }
 
-    // public void printPosOrder(Node newNode){
-    //     if (newNode != null) {
-    //         System.out.println(newNode.getValue() + "\n");
-    //         printPreOrder(newNode.getLeft());
-    //         printPreOrder(newNode.getRight());
-    //     }
-    // }
+    public void printPosOrder(Node newNode){
+        if (newNode != null) {
+            printPosOrder(newNode.getLeft());
+            printPosOrder(newNode.getRight());
+            System.out.println(newNode.getValue() + " ");
+        }
+    }
 
     private Node findNode(Node current, int v){
         if (current == null) {
