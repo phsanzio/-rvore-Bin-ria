@@ -36,7 +36,7 @@ public class Tree {
     }
 
     private boolean existsNode(Node element){
-        Node temp = findNode(root, element.getValue());
+        Node temp = findNode(element.getValue());
         if (temp != null){
             return true;
         } else {
@@ -131,34 +131,72 @@ public class Tree {
         System.out.println("Altura da árvore: " + height(root));
     }
     
-    public void removeNode(Node element){
-        
+    private Node removeNode(Node root, int v){
+        if (empty()) {
+            return root;
+        }
+        if (root.getValue() > v){
+            root.setLeft(removeNode(root.getLeft(), v));
+        } else if (root.getValue() < v) {
+            root.setRight(removeNode(root.getRight(), v));
+        } else {
+            if (root.getRight() == null) {
+                return root.getRight();
+            }
+            if (root.getLeft() == null) {
+                return root.getLeft();
+            }
+            Node prox = getProx(root);
+            root.setValue(prox.getValue());
+            root.setRight(removeNode(root.getRight(), prox.getValue()));
+        }
+        return root;
+    }
+
+    public void removeValue(int v){
+        if (findNode(v) != null) {
+            removeNode(root, v);
+        }
     }
 
     public void removePairs(Node root){
-        
+        if (root != null) {
+            if (root.getValue() % 2 == 0){
+                removeValue(root.getValue());
+            }
+            if (root.getLeft() != null) {
+                removePairs(root.getLeft());
+            }
+            if (root.getRight() != null) {
+                removePairs(root.getRight());
+            }
+        }
     }
 
-    private Node findNode(Node current, int v){
-        if (current == null) {
+    private Node searchValue(Node element, int v){
+        if (element == null){
             return null;
-        }
-        if (current.getRight() != null) {
-            if (current.getRight().getValue() == v) {
-                return current;
-            }
-        }
-
-        if (current.getLeft() != null) {
-            if (current.getLeft().getValue() == v) {
-                return current;
-            }
-        }
-
-        if (current.getValue() > v) {
-            return findNode(current.getRight(), v);
+        } else if(element.getValue() == v){
+            return element;
         } else {
-            return findNode(current.getLeft(), v);
+            if (element.getValue() > v) {
+                return searchValue(element.getLeft(), v);
+            } else {
+                return searchValue(element.getRight(), v);
+            }
         }
     }
+
+    public Node findNode(int v){
+        return searchValue(root, v);
+    }
+
+    private Node getProx(Node element) {
+        element = element.getRight();
+        while (element != null && element.getLeft() != null) {
+            element = element.getLeft();
+        }
+        return element;
+    }
+
 }
