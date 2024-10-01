@@ -159,16 +159,16 @@ public class Tree {
         }
     }
 
-    public void removePairs(Node root){
+    public void removeEven(Node root){
         if (root != null) {
             if (root.getValue() % 2 == 0){
                 removeValue(root.getValue());
             }
             if (root.getLeft() != null) {
-                removePairs(root.getLeft());
+                removeEven(root.getLeft());
             }
             if (root.getRight() != null) {
-                removePairs(root.getRight());
+                removeEven(root.getRight());
             }
         }
     }
@@ -197,6 +197,16 @@ public class Tree {
             element = element.getLeft();
         }
         return element;
+    }
+
+    public void mirroring(Node element){
+        if (element != null) {
+            Node temp = element.getLeft();
+            element.setLeft(element.getRight());
+            element.setRight(temp);
+            mirroring(element.getLeft());
+            mirroring(element.getRight());
+        }
     }
 
 }
