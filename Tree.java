@@ -199,6 +199,7 @@ public class Tree {
         return element;
     }
 
+
     public void mirroring(Node element){
         if (element != null) {
             Node temp = element.getLeft();
@@ -208,5 +209,6 @@ public class Tree {
             mirroring(element.getRight());
         }
     }
+
 
 }
